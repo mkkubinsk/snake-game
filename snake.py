@@ -1,25 +1,31 @@
-from turtle import Turtle, Screen
+from turtle import Turtle
+
 MOVE_DISTANCE = 20
 UP = 90
 DOWN = 270
 LEFT = 180
 RIGHT = 0
+START_LENGTH = 3
 
 
 class Snake:
+
     def __init__(self):
         self.snake = []
-        self.create_snake()
+        self.create_snake(START_LENGTH)
         self.head = self.snake[0]
 
-    def create_snake(self):
-        for i in range(3):
+    def create_snake(self, length):
+        for i in range(length):
             snake_segment = Turtle(shape='square')
-            snake_segment.color('white')
+            snake_segment.color('black')
             snake_segment.penup()
             if i != 0:
                 snake_segment.setx(self.snake[i - 1].xcor() - 20)
+            elif length == 1:
+                snake_segment.setpos(self.snake[-1].pos())
             self.snake.append(snake_segment)
+            self.snake[-1].color('white')
 
     def move(self):
         for i in range(len(self.snake) - 1, -1, -1):
