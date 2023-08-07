@@ -34,6 +34,13 @@ class Snake:
             elif i == 0:
                 self.snake[i].forward(MOVE_DISTANCE)
 
+    def restart(self):
+        for seg in self.snake:
+            seg.goto(1000,1000)
+        self.snake.clear()
+        self.create_snake(START_LENGTH)
+        self.head = self.snake[0]
+
     def turn_up(self):
         current_heading = self.head.heading()
         if current_heading != DOWN:
